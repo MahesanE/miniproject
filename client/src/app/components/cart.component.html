@@ -1,0 +1,12 @@
+<h2>Your Cart</h2>
+<div *ngFor="let vape of cart">
+    <p>Flavor: {{vape.flavor}}</p>
+    <p>Type: {{vape.type}}</p>
+    <p>Quantity: {{vape.quantity}}</p>
+    <p>Price: ${{vape.price}}</p>
+    <button (click)="removeFromCart(vape)">Remove from Cart</button>
+    <hr>
+</div>
+
+<button (click)="clearCart()">Clear Cart</button>
+<button (click)="goBack()">Back</button>

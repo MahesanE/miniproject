@@ -1,0 +1,12 @@
+<form [formGroup]="searchForm" (ngSubmit)="search()">
+  <input formControlName="searchString" placeholder="Search flavors">
+  <button type="submit">Search</button>
+</form>
+
+<div *ngIf="user; else notLoggedIn">
+<p>Welcome, {{user.displayName}}!</p>
+<button (click)="logout()">Logout</button>
+</div>
+<ng-template #notLoggedIn>
+<button (click)="loginWithGoogle()">Login with Google</button>
+</ng-template>

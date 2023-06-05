@@ -1,0 +1,11 @@
+<h2>Search Results</h2>
+<div *ngFor="let vape of vapes">
+  <p>Flavor: {{vape.flavor}}</p>
+  <p>Type: {{vape.type}}</p>
+  <p>Quantity: {{vape.quantity}}</p>
+  <p>Price: ${{vape.price}} </p>
+  <button (click)="addToCart(vape)">Add to Cart</button>
+  <hr>
+</div>
+<button (click)="goBack()">Back</button>
+  <button (click)="goToCart()">Go to Cart</button>
