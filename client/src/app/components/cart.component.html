@@ -2,7 +2,7 @@
 <div *ngFor="let vape of cart">
     <p>Flavor: {{vape.flavor}}</p>
     <p>Type: {{vape.type}}</p>
-    <p>Quantity: {{vape.quantity}}</p>
+    <p>Quantity: {{vape.selectedQuantity}}</p>
     <p>Price: ${{vape.price}}</p>
     <button (click)="removeFromCart(vape)">Remove from Cart</button>
     <hr>
@@ -10,3 +10,13 @@
 
 <button (click)="clearCart()">Clear Cart</button>
 <button (click)="goBack()">Back</button>
+
+<!-- Checkout section -->
+<h2>Checkout</h2>
+<div *ngIf="user">
+  <p>Total cost: ${{ totalCost }}</p>
+  <p>Phone number: {{ user?.phoneNumber }}</p>
+  <p>Address: {{ user?.address }}</p>
+  <!-- Add a button to confirm the order and go to the payment -->
+  <button (click)="confirmOrder()">Confirm Order</button>
+</div>

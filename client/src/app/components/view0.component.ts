@@ -20,24 +20,21 @@ export class View0Component implements OnInit {
     this.searchForm = new FormGroup({
       searchString: new FormControl('')
     });
-
-    // Listen to auth state changes
-    const auth = getAuth();
-    onAuthStateChanged(auth, async (firebaseUser) => {
-      if (firebaseUser) {
-        this.user = firebaseUser;
-        const userData = await this.firebaseService.getUserData(this.user.uid);
-        if (!userData) {
-          this.router.navigate(['/profile']); // Redirect to profile page if user data doesn't exist
-        }
-      } else {
-        this.user = null;
-      }
-    });
   }
 
   ngOnInit(): void {
     this.getVapes();
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, async (firebaseUser) => {
+      this.user = firebaseUser;
+      if (firebaseUser) {
+        const userData = await this.firebaseService.getUserData(firebaseUser.uid);
+        if (!userData) {
+          this.router.navigate(['/profile']);
+        }
+      }
+    });
   }
 
   getVapes(): void {
@@ -51,7 +48,6 @@ export class View0Component implements OnInit {
     }
   }
 
-  // Google Login Function
   loginWithGoogle() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -67,13 +63,12 @@ export class View0Component implements OnInit {
         console.log('Failed to sign in with Google:', error);
       });
   }
-  
-  // Logout Function
+
   logout() {
     const auth = getAuth();
     signOut(auth).then(() => {
       console.log('User signed out');
-      this.user = null; // update the user state
+      this.user = null; 
     });
   }
 }

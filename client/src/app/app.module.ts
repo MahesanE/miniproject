@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule} from '@angular/common/http';
-import { ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getApps, initializeApp, provideFirebaseApp } from '@angular/fire/app';
 
@@ -12,6 +12,9 @@ import { SearchResultsComponent } from './components/search-results.component';
 import { environment } from 'src/environment/environment.prod';
 import { CartComponent } from './components/cart.component';
 import { ProfileComponent } from './components/profile.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { PaymentSuccessComponent } from './components/payment-success.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,8 @@ import { ProfileComponent } from './components/profile.component';
     View0Component,
     SearchResultsComponent,
     CartComponent,
-    ProfileComponent
+    ProfileComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     provideFirebaseApp(() => {
@@ -30,7 +34,10 @@ import { ProfileComponent } from './components/profile.component';
     BrowserModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../models';
 import { FirebaseService } from '../services/firebase.service';
 
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',

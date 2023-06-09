@@ -4,8 +4,12 @@
   <p>Type: {{vape.type}}</p>
   <p>Quantity: {{vape.quantity}}</p>
   <p>Price: ${{vape.price}} </p>
-  <button (click)="addToCart(vape)">Add to Cart</button>
+  <select [(ngModel)]="vape.selectedQuantity" *ngIf="vape.quantity > 0">
+    <option [value]="null" disabled>Select quantity</option>
+    <option [value]="i" *ngFor="let i of getNumbersUpTo(vape.quantity)">{{i}}</option>
+  </select>
+  <button (click)="addToCart(vape, vape.selectedQuantity)" [disabled]="!vape.selectedQuantity">Add to Cart</button>
   <hr>
 </div>
 <button (click)="goBack()">Back</button>
-  <button (click)="goToCart()">Go to Cart</button>
+<button (click)="goToCart()">Go to Cart</button>
