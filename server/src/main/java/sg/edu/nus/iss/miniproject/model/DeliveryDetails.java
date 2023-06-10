@@ -1,5 +1,7 @@
 package sg.edu.nus.iss.miniproject.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 
 import lombok.AllArgsConstructor;
@@ -16,5 +18,5 @@ public class DeliveryDetails {
     private String phoneNumber;
     private String address;
     private String deliveryNumber;
-    private Object[] itemsPurchased;
+    private List<PurchasedItem> itemsPurchased;
 }

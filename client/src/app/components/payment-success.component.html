@@ -1,7 +1,7 @@
 <div *ngIf="sessionDetails">
     <h2>Payment Successful</h2>
     <p>Thank you for your purchase!</p>
-    
+
     <h3>Payment Details:</h3>
     <ul>
         <li>Name: {{ userName }}</li>
@@ -12,6 +12,7 @@
 
     <h3>Items Purchased:</h3>
     <ul>
-        <li *ngFor="let item of itemsPurchased">{{ item.name }} - Quantity: {{ item.quantity }}</li>
+        <li *ngFor="let item of itemsPurchased">{{item.type}} {{ item.flavor }} - Quantity: {{ item.selectedQuantity }}</li>
     </ul>
+
 </div>

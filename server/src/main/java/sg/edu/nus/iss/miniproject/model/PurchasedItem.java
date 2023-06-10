@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vape {
-    private String type;
-    private String flavor;
-    private int quantity;
-    private double price;
-   
+public class PurchasedItem {
+    private Vape vape;
+    private int selectedQuantity;
 }

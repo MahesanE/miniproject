@@ -16,7 +16,7 @@ export class PaymentSuccessComponent implements OnInit {
   userName: string = '';
   phoneNumber: string = '';
   address: string = '';
-  itemsPurchased: any[] = []; // Assuming this will be an array
+  itemsPurchased: any[] = [];
   deliveryNumber: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private firebaseService: FirebaseService,
@@ -26,7 +26,6 @@ export class PaymentSuccessComponent implements OnInit {
     this.sessionId = this.route.snapshot.queryParamMap.get('session_id');
 
     if (this.sessionId) {
-      // Call your API to retrieve session details
       this.http.get(`http://localhost:8080/api/stripe/checkout-session?sessionId=${this.sessionId}`)
         .subscribe(details => {
           this.sessionDetails = details;
@@ -42,20 +41,49 @@ export class PaymentSuccessComponent implements OnInit {
           this.phoneNumber = userData.phoneNumber || '';
           this.address = userData.address || '';
         }
+
+        this.deliveryNumber = this.generateDeliveryNumber();
+
+        this.itemsPurchased = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+        this.sendDeliveryDetailsToBackend();
       }
     });
-
-    // Generate a random delivery number
-    this.deliveryNumber = this.generateDeliveryNumber();
-     // Get items from the cart
-     this.itemsPurchased = this.cartService.getCart();
-
-     // Now that payment was successful, you can clear the cart.
-     this.cartService.clearCart();
   }
 
   generateDeliveryNumber(): string {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
+
+  sendDeliveryDetailsToBackend(): void {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    
+    const itemsPurchased = cartItems.map((item: any) => ({
+        vape: {
+            type: item.type,
+            flavor: item.flavor,
+            quantity: item.quantity,
+            price: item.price
+        }
+    }));
+
+    const deliveryDetails = {
+        userName: this.userName,
+        phoneNumber: this.phoneNumber,
+        address: this.address,
+        deliveryNumber: this.deliveryNumber,
+        itemsPurchased: itemsPurchased
+    };
+
+    this.http.post('http://localhost:8080/api/deliverydetails', deliveryDetails)
+        .subscribe(response => {
+            console.log('Delivery details saved successfully', response);
+            localStorage.removeItem('cartItems');
+        }, error => {
+            console.error('Error saving delivery details', error);
+        });
+}
+
+
 
 }

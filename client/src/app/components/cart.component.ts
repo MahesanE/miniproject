@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
       }
     });
 
-    loadStripe('pk_test_51NGDu9LU50nLoMrUpxEfzq0Lpb82kvvg82kdWMOqxrwY52GhEb3SppgJcTohGi1heMRkXOIK6vY3stfedeeiIA7900JfrqZiyi').then((stripe) => { // Replace with your Stripe Publishable Key
+    loadStripe('pk_test_51NGDu9LU50nLoMrUpxEfzq0Lpb82kvvg82kdWMOqxrwY52GhEb3SppgJcTohGi1heMRkXOIK6vY3stfedeeiIA7900JfrqZiyi').then((stripe) => {
       this.stripe = stripe;
     });
   }
@@ -66,49 +66,34 @@ export class CartComponent implements OnInit {
   calculateTotalCost(): void {
     this.totalCost = this.cart.reduce((acc, item) => acc + (item.price * (item.selectedQuantity || 0)), 0);
   }
-  
 
   confirmOrder(): void {
-    // Here you need to define your line items.
-    // You should use the data from the cart.
     const lineItems = this.cart.map(item => {
-      console.log("item.price:", item.price);
-      console.log("item.quantity:", item.quantity);
-    
       return {
         price_data: {
           currency: 'sgd',
           product_data: {
             name: item.flavor,
           },
-          unit_amount: Number(item.price) * 100, // Stripe expects amount in cents
+          unit_amount: Number(item.price) * 100,
         },
         quantity: Number(item.quantity),
       };
     });
-    
-    
-    
-    
+
+    localStorage.setItem('cartItems', JSON.stringify(this.cart));
 
     const body = { line_items: lineItems };
 
-    // Make the HTTP request
-    console.log("body: ", body); // log the data you're sending
     this.http.post('http://localhost:8080/api/stripe/create-checkout-session', body)
-  .subscribe((session: any) => {
-    console.log("session: ", session); // log the response
+      .subscribe((session: any) => {
         this.stripe.redirectToCheckout({
           sessionId: session.id,
         }).then((result: { error: { message: string; }; }) => {
-          // If `redirectToCheckout` fails due to a browser or network
-          // error, display the localized error message to your customer.
           if (result.error) {
             alert(result.error.message);
           }
         });
       });
   }
-
-
 }
