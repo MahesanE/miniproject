@@ -77,7 +77,7 @@ export class CartComponent implements OnInit {
           },
           unit_amount: Number(item.price) * 100,
         },
-        quantity: Number(item.quantity),
+        quantity: Number(item.selectedQuantity),
       };
     });
 

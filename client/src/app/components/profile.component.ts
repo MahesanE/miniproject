@@ -33,6 +33,7 @@ export class ProfileComponent implements OnInit {
         this.user = {
           uid: firebaseUser.uid,
           displayName: firebaseUser.displayName || 'Anonymous',
+          email: firebaseUser.email || '',
           phoneNumber: userData?.phoneNumber || '',
           address: userData?.address || ''
         };

@@ -10,6 +10,7 @@ export class Vape {
 export interface User {
     uid: string; // The user ID from Google Auth
     displayName: string;
+    email: string;
     phoneNumber: string;
     address: string;
   }

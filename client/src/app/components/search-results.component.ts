@@ -17,42 +17,42 @@ export class SearchResultsComponent implements OnInit {
     private cartService: CartService, private router: Router,
     private snackBar: MatSnackBar) { }
 
-    ngOnInit(): void {
-      this.route.params.subscribe(params => {
-        const flavor = params['flavor'];
-        this.vapeService.getVapes(flavor).subscribe(vapes => {
-          this.vapes = vapes;
-          // Initialize selectedQuantity to null for each vape object
-          this.vapes.forEach(vape => vape.selectedQuantity = null);
-        });
+  ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const flavor = params['flavor'];
+      this.vapeService.getVapes(flavor).subscribe(vapes => {
+        this.vapes = vapes;
+        // Initialize selectedQuantity to null for each vape object
+        this.vapes.forEach(vape => vape.selectedQuantity = null);
       });
-    }
-    
+    });
+  }
 
-    addToCart(vape: Vape, quantity: number | null): void {
-      quantity = quantity || 0; // If quantity is null, default it to 0
-    
-      if (quantity <= 0) {
-        // Open the snackbar with a warning message
-        this.snackBar.open('Please select a quantity greater than zero', 'Close', {
-          duration: 3000,
-          verticalPosition: 'top',
-        });
-        return;
-      }
-        
-      // create a deep copy of the vape object to avoid reference issues
-      const vapeCopy = JSON.parse(JSON.stringify(vape));
-  vapeCopy.selectedQuantity = quantity;  // <-- Update selectedQuantity
-  this.cartService.addToCart(vapeCopy);
-      
-      // open the snackbar
-      this.snackBar.open(`${vapeCopy.selectedQuantity} ${vapeCopy.flavor} added to cart`, 'Close', {
+
+  addToCart(vape: Vape, quantity: number | null): void {
+    quantity = quantity || 0; // If quantity is null, default it to 0
+
+    if (quantity <= 0) {
+      // Open the snackbar with a warning message
+      this.snackBar.open('Please select a quantity greater than zero', 'Close', {
         duration: 3000,
         verticalPosition: 'top',
       });
+      return;
     }
-    
+
+    // create a deep copy of the vape object to avoid reference issues
+    const vapeCopy = JSON.parse(JSON.stringify(vape));
+    vapeCopy.selectedQuantity = quantity;  // <-- Update selectedQuantity
+    this.cartService.addToCart(vapeCopy);
+
+    // open the snackbar
+    this.snackBar.open(`${vapeCopy.selectedQuantity} ${vapeCopy.flavor} added to cart`, 'Close', {
+      duration: 3000,
+      verticalPosition: 'top',
+    });
+  }
+
 
   goBack() {
     this.router.navigate(['/home']);
@@ -70,8 +70,8 @@ export class SearchResultsComponent implements OnInit {
   }
 
   getNumbersUpTo(n: number): number[] {
-    return Array.from({length: n}, (_, i) => i + 1);
+    return Array.from({ length: n }, (_, i) => i + 1);
   }
-  
+
 
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { CartService } from '../services/cart-service.service';
@@ -14,13 +14,14 @@ export class PaymentSuccessComponent implements OnInit {
   sessionId: string | null = null;
   sessionDetails: any = null;
   userName: string = '';
+  email: string = '';
   phoneNumber: string = '';
   address: string = '';
   itemsPurchased: any[] = [];
   deliveryNumber: string = '';
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private firebaseService: FirebaseService,
-    private cartService: CartService) { }
+    private cartService: CartService, private router: Router) { }
 
   ngOnInit(): void {
     this.sessionId = this.route.snapshot.queryParamMap.get('session_id');
@@ -38,6 +39,7 @@ export class PaymentSuccessComponent implements OnInit {
         const userData = await this.firebaseService.getUserData(firebaseUser.uid);
         if (userData) {
           this.userName = firebaseUser.displayName || 'Anonymous';
+          this.email = firebaseUser.email || '';
           this.phoneNumber = userData.phoneNumber || '';
           this.address = userData.address || '';
         }
@@ -57,33 +59,47 @@ export class PaymentSuccessComponent implements OnInit {
 
   sendDeliveryDetailsToBackend(): void {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-    
+
     const itemsPurchased = cartItems.map((item: any) => ({
-        vape: {
-            type: item.type,
-            flavor: item.flavor,
-            quantity: item.quantity,
-            price: item.price
-        }
+      vape: {
+        type: item.type,
+        flavor: item.flavor,
+        quantity: item.quantity,
+        price: item.price
+      },
+      selectedQuantity: item.selectedQuantity
     }));
 
     const deliveryDetails = {
-        userName: this.userName,
-        phoneNumber: this.phoneNumber,
-        address: this.address,
-        deliveryNumber: this.deliveryNumber,
-        itemsPurchased: itemsPurchased
+      userName: this.userName,
+      email: this.email,
+      phoneNumber: this.phoneNumber,
+      address: this.address,
+      deliveryNumber: this.deliveryNumber,
+      itemsPurchased: itemsPurchased
     };
 
     this.http.post('http://localhost:8080/api/deliverydetails', deliveryDetails)
-        .subscribe(response => {
-            console.log('Delivery details saved successfully', response);
-            localStorage.removeItem('cartItems');
-        }, error => {
-            console.error('Error saving delivery details', error);
-        });
-}
+      .subscribe(response => {
+        console.log('Delivery details saved successfully', response);
+        localStorage.removeItem('cartItems');
+        this.sendEmailConfirmation(deliveryDetails);
+      }, error => {
+        console.error('Error saving delivery details', error);
+      });
+  }
+  sendEmailConfirmation(deliveryDetails: any): void {
+    // Send the email confirmation
+    this.http.post('http://localhost:8080/api/email/send', deliveryDetails)
+      .subscribe(response => {
+        console.log('Email sent successfully', response);
+      }, error => {
+        console.error('Error sending email', error);
+      });
+  }
 
-
+  goBack() {
+    this.router.navigate(['/home']);
+  }
 
 }
