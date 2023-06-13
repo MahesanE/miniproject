@@ -43,11 +43,11 @@ export class SearchResultsComponent implements OnInit {
         
       // create a deep copy of the vape object to avoid reference issues
       const vapeCopy = JSON.parse(JSON.stringify(vape));
-      vapeCopy.quantity = quantity;  // set the selected quantity to the vapeCopy object
-      this.cartService.addToCart(vapeCopy);
+  vapeCopy.selectedQuantity = quantity;  // <-- Update selectedQuantity
+  this.cartService.addToCart(vapeCopy);
       
       // open the snackbar
-      this.snackBar.open(`${vapeCopy.quantity} ${vapeCopy.flavor} added to cart`, 'Close', {
+      this.snackBar.open(`${vapeCopy.selectedQuantity} ${vapeCopy.flavor} added to cart`, 'Close', {
         duration: 3000,
         verticalPosition: 'top',
       });

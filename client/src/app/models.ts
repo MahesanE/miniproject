@@ -3,7 +3,7 @@ export class Vape {
     flavor!: string;
     quantity!: number;
     price!: number;
-    selectedQuantity!: number | null; // Add this line
+    selectedQuantity!: number | null; 
 }
 
 
