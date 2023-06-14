@@ -30,11 +30,11 @@ public class StripeController {
     public ResponseEntity<?> createCheckoutSession(@RequestBody Map<String, Object> request) {
         List<Map<String, Object>> lineItems = (List<Map<String, Object>>) request.get("line_items");
         List<SessionCreateParams.LineItem> stripeLineItems = new ArrayList<>();
-    
+
         for (Map<String, Object> item : lineItems) {
             Map<String, Object> priceData = (Map<String, Object>) item.get("price_data");
             Map<String, Object> productData = (Map<String, Object>) priceData.get("product_data");
-    
+
             SessionCreateParams.LineItem stripeItem = SessionCreateParams.LineItem.builder()
                     .setQuantity(Long.valueOf(String.valueOf(item.get("quantity"))))
                     .setPriceData(
@@ -47,10 +47,10 @@ public class StripeController {
                                                     .build())
                                     .build())
                     .build();
-    
+
             stripeLineItems.add(stripeItem);
         }
-    
+
         try {
             Session session = stripeService.createSession(stripeLineItems);
             return ResponseEntity.ok(session.toJson());
@@ -59,7 +59,6 @@ public class StripeController {
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }
-    
 
     @GetMapping("/checkout-session")
     public ResponseEntity<?> getCheckoutSession(@RequestParam String sessionId) {

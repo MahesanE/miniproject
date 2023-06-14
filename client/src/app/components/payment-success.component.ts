@@ -17,6 +17,9 @@ export class PaymentSuccessComponent implements OnInit {
   email: string = '';
   phoneNumber: string = '';
   address: string = '';
+  postalCode: string = '';
+  unitNumber: string = '';
+  comments: string = '';
   itemsPurchased: any[] = [];
   deliveryNumber: string = '';
 
@@ -42,6 +45,10 @@ export class PaymentSuccessComponent implements OnInit {
           this.email = firebaseUser.email || '';
           this.phoneNumber = userData.phoneNumber || '';
           this.address = userData.address || '';
+          this.postalCode = userData.postalCode || '';
+          this.unitNumber = userData.unitNumber || '';
+          this.comments = userData.comments || '';
+
         }
 
         this.deliveryNumber = this.generateDeliveryNumber();
@@ -75,6 +82,9 @@ export class PaymentSuccessComponent implements OnInit {
       email: this.email,
       phoneNumber: this.phoneNumber,
       address: this.address,
+      postalCode: this.postalCode,
+      unitNumber: this.unitNumber,
+      comments: this.comments,
       deliveryNumber: this.deliveryNumber,
       itemsPurchased: itemsPurchased
     };

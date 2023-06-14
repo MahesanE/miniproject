@@ -15,8 +15,12 @@
 <h2>Checkout</h2>
 <div *ngIf="user">
   <p>Total cost: ${{ totalCost }}</p>
-  <p>Phone number: {{ user?.phoneNumber }}</p>
-  <p>Address: {{ user?.address }}</p>
+  <p>Phone number: {{ user.phoneNumber }}</p>
+  <p>Address: {{ user.address }}</p>
+  <p>Postal Code: {{ user.postalCode }}</p>
+  <p>Unit Number: {{ user.unitNumber }}</p>
+  <p>Comments: {{ user.comments }}</p>
+  
   <!-- Add a button to confirm the order and go to the payment -->
   <button (click)="confirmOrder()">Confirm Order</button>
 

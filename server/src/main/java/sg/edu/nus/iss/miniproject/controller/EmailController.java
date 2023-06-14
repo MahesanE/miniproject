@@ -23,8 +23,11 @@ public class EmailController {
         String content = "Dear " + deliveryDetails.getUserName() + ",\n\n";
         content += "Your order has been placed with the following details:\n";
         content += "Address: " + deliveryDetails.getAddress() + "\n";
+        content += "Postal Code: " + deliveryDetails.getPostalCode() + "\n";
+        content += "Unit number: " + deliveryDetails.getUnitNumber() + "\n";
         content += "Phone Number: " + deliveryDetails.getPhoneNumber() + "\n";
         content += "Delivery Number: " + deliveryDetails.getDeliveryNumber() + "\n";
+        content += "Comments: " + deliveryDetails.getComments() + "\n";
         content += "Items Purchased:\n";
         for (PurchasedItem item : deliveryDetails.getItemsPurchased()) {
             Vape vape = item.getVape();

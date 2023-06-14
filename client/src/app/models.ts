@@ -3,7 +3,7 @@ export class Vape {
     flavor!: string;
     quantity!: number;
     price!: number;
-    selectedQuantity!: number | null; 
+    selectedQuantity!: number | null;
 }
 
 
@@ -13,5 +13,7 @@ export interface User {
     email: string;
     phoneNumber: string;
     address: string;
-  }
-  
+    postalCode: string;
+    unitNumber: string;
+    comments: string;
+}

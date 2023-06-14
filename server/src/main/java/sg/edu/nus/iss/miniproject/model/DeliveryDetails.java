@@ -18,6 +18,9 @@ public class DeliveryDetails {
     private String email;
     private String phoneNumber;
     private String address;
+    private String postalCode;
+    private String unitNumber;
+    private String comments;
     private String deliveryNumber;
     private List<PurchasedItem> itemsPurchased;
 }

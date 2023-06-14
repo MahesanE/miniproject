@@ -1,12 +1,17 @@
-<form [formGroup]="searchForm" (ngSubmit)="search()">
-  <input formControlName="searchString" placeholder="Search flavors">
-  <button type="submit">Search</button>
-</form>
+<!-- view0.component.html -->
 
-<div *ngIf="user; else notLoggedIn">
-<p>Welcome, {{user.displayName}}!</p>
-<button (click)="logout()">Logout</button>
+<div class="container">
+  <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
+    <input formControlName="searchString" placeholder="Search flavors" class="search-input">
+    <button type="submit" class="search-button">Search</button>
+  </form>
+
+  <div *ngIf="user; else notLoggedIn" class="user-section">
+      <p class="welcome-text">Welcome, {{user.displayName}}!</p>
+      <button (click)="editProfile()" class="edit-profile-button">Edit Profile</button>
+      <button (click)="logout()" class="logout-button">Logout</button>
+  </div>
+  <ng-template #notLoggedIn>
+      <button (click)="loginWithGoogle()" class="login-button">Login with Google</button>
+  </ng-template>
 </div>
-<ng-template #notLoggedIn>
-<button (click)="loginWithGoogle()">Login with Google</button>
-</ng-template>

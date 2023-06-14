@@ -1,6 +1,46 @@
-<form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
-    <input formControlName="phoneNumber" placeholder="Phone Number">
-    <input formControlName="address" placeholder="Address">
-    <button type="submit">Save</button>
-  </form>
-  
+<form [formGroup]="profileForm" (ngSubmit)="saveProfile()" style="display: flex; flex-direction: column; width: 300px; margin: auto;">
+
+  <!-- Phone Number Input -->
+  <label for="phone-number">Phone Number:</label>
+  <input id="phone-number" formControlName="phoneNumber" placeholder="Phone Number" style="margin-bottom: 10px;">
+  <div *ngIf="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched" class="error-message">
+    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone number is required.</div>
+    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number format.</div>
+  </div>
+
+  <!-- Address Input with reference for Google Maps Autocomplete -->
+  <label for="address">Address:</label>
+  <input id="address" #addressInput formControlName="address" placeholder="Address" style="margin-bottom: 10px;">
+  <div *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched" class="error-message">
+    Address is required.
+  </div>
+
+  <!-- Postal Code Input -->
+  <label for="postal-code">Postal Code:</label>
+  <input id="postal-code" formControlName="postalCode" placeholder="Postal Code" style="margin-bottom: 10px;">
+  <div *ngIf="profileForm.get('postalCode')?.invalid && profileForm.get('postalCode')?.touched" class="error-message">
+    <div *ngIf="profileForm.get('postalCode')?.errors?.['required']">Postal code is required.</div>
+    <div *ngIf="profileForm.get('postalCode')?.errors?.['pattern']">Invalid postal code format.</div>
+  </div>
+
+  <!-- Unit Number Input -->
+  <label for="unit-number">Unit Number:</label>
+  <input id="unit-number" formControlName="unitNumber" placeholder="Unit Number" style="margin-bottom: 20px;">
+
+ <!-- Comments -->
+<label for="comments">Comments:</label>
+<textarea id="comments" formControlName="comments" placeholder="Input any delivery instructions" rows="4" style="margin-bottom: 20px;"></textarea>
+
+
+  <!-- Save Button -->
+  <button [disabled]="!profileForm.valid" type="submit">Save</button>
+
+</form>
+
+<style>
+  .error-message {
+    color: red;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+</style>

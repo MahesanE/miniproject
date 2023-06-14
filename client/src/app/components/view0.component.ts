@@ -71,4 +71,8 @@ export class View0Component implements OnInit {
       this.user = null; 
     });
   }
+
+  editProfile() {
+    this.router.navigate(['/profile']); // Navigate to the profile editing page
+  }
 }
