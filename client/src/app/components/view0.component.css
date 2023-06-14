@@ -1,60 +1,32 @@
-/* view0.component.css */
-
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 40px auto;
     padding: 20px;
     text-align: center;
-  }
-  
-  .search-form {
+}
+
+.search-form {
+    display: flex;
+    justify-content: center;
     margin-bottom: 20px;
-  }
-  
-  .search-input {
-    padding: 10px;
+}
+
+.search-input {
     width: 70%;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-button {
-    padding: 10px 20px;
-    margin-left: 10px;
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .search-button:hover {
-    background-color: #45a049;
-  }
-  
-  .user-section {
-    margin-bottom: 20px;
-  }
-  
-  .welcome-text {
-    margin-bottom: 10px;
-  }
-  
-  .edit-profile-button,
-  .logout-button,
-  .login-button {
-    padding: 10px 20px;
-    background-color: #008CBA;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
     margin-right: 10px;
-  }
-  
-  .edit-profile-button:hover,
-  .logout-button:hover,
-  .login-button:hover {
-    background-color: #007BAA;
-  }
-  
+}
+
+.user-section {
+    margin: 20px 0;
+}
+
+.welcome-text {
+    margin: 10px 0;
+    font-size: 1.2em;
+}
+
+.edit-profile-button,
+.logout-button,
+.login-button {
+    margin-right: 10px;
+}

@@ -1,46 +1,64 @@
-<form [formGroup]="profileForm" (ngSubmit)="saveProfile()" style="display: flex; flex-direction: column; width: 300px; margin: auto;">
+<form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-form">
 
   <!-- Phone Number Input -->
-  <label for="phone-number">Phone Number:</label>
-  <input id="phone-number" formControlName="phoneNumber" placeholder="Phone Number" style="margin-bottom: 10px;">
-  <div *ngIf="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched" class="error-message">
-    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone number is required.</div>
-    <div *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number format.</div>
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Phone Number</mat-label>
+    <input matInput formControlName="phoneNumber" placeholder="Phone Number">
+    <mat-icon matPrefix>phone</mat-icon>
+    <mat-error *ngIf="profileForm.get('phoneNumber')?.invalid && profileForm.get('phoneNumber')?.touched">
+      <span *ngIf="profileForm.get('phoneNumber')?.errors?.['required']">Phone number is required.</span>
+      <span *ngIf="profileForm.get('phoneNumber')?.errors?.['pattern']">Invalid phone number format.</span>
+    </mat-error>
+  </mat-form-field>
 
   <!-- Address Input with reference for Google Maps Autocomplete -->
-  <label for="address">Address:</label>
-  <input id="address" #addressInput formControlName="address" placeholder="Address" style="margin-bottom: 10px;">
-  <div *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched" class="error-message">
-    Address is required.
-  </div>
+  <mat-form-field appearance="fill">
+    <mat-label>Address</mat-label>
+    <input matInput #addressInput formControlName="address" placeholder="Address">
+    <mat-icon matPrefix>location_on</mat-icon>
+    <mat-error *ngIf="profileForm.get('address')?.invalid && profileForm.get('address')?.touched">
+      Address is required.
+    </mat-error>
+  </mat-form-field>
 
   <!-- Postal Code Input -->
-  <label for="postal-code">Postal Code:</label>
-  <input id="postal-code" formControlName="postalCode" placeholder="Postal Code" style="margin-bottom: 10px;">
-  <div *ngIf="profileForm.get('postalCode')?.invalid && profileForm.get('postalCode')?.touched" class="error-message">
-    <div *ngIf="profileForm.get('postalCode')?.errors?.['required']">Postal code is required.</div>
-    <div *ngIf="profileForm.get('postalCode')?.errors?.['pattern']">Invalid postal code format.</div>
-  </div>
+  <!-- Postal Code Input -->
+<mat-form-field appearance="fill">
+  <mat-label>Postal Code</mat-label>
+  <input matInput formControlName="postalCode" placeholder="Postal Code">
+  <mat-icon matPrefix>map</mat-icon>
+  <mat-error *ngIf="profileForm.get('postalCode')?.invalid && profileForm.get('postalCode')?.touched">
+    <span *ngIf="profileForm.get('postalCode')?.errors?.['required']">Postal code is required.</span>
+    <span *ngIf="profileForm.get('postalCode')?.errors?.['pattern']">Invalid postal code format.</span>
+  </mat-error>
+</mat-form-field>
+
 
   <!-- Unit Number Input -->
-  <label for="unit-number">Unit Number:</label>
-  <input id="unit-number" formControlName="unitNumber" placeholder="Unit Number" style="margin-bottom: 20px;">
+  <mat-form-field appearance="fill">
+    <mat-label>Unit Number</mat-label>
+    <input matInput formControlName="unitNumber" placeholder="Unit Number">
+    <mat-icon matPrefix>home</mat-icon>
+  </mat-form-field>
 
- <!-- Comments -->
-<label for="comments">Comments:</label>
-<textarea id="comments" formControlName="comments" placeholder="Input any delivery instructions" rows="4" style="margin-bottom: 20px;"></textarea>
+  <!-- Comments -->
+  <mat-form-field appearance="fill" class="comments-field">
+    <mat-label>Comments</mat-label>
+    <textarea matInput id="comments" formControlName="comments" placeholder="Input any delivery instructions" rows="4"></textarea>
+    <mat-icon matPrefix>comment</mat-icon>
+  </mat-form-field>
 
+  <!-- <mat-card>
+    <mat-card-title>Map</mat-card-title>
+    <mat-card-content>
+      <div #map id="map" style="height: 300px;"></div>
+    </mat-card-content>
+  </mat-card>
+   -->
 
   <!-- Save Button -->
-  <button [disabled]="!profileForm.valid" type="submit">Save</button>
+  <button mat-raised-button color="primary" [disabled]="!profileForm.valid" type="submit">
+    <mat-icon>save</mat-icon> Save
+  </button>
 
 </form>
-
-<style>
-  .error-message {
-    color: red;
-    font-style: italic;
-    margin-bottom: 10px;
-  }
-</style>

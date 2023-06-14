@@ -1,0 +1,15 @@
+.product-card, .checkout-card {
+    max-width: 600px;
+    margin: 20px auto;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+  }
+  
+  .checkout-section {
+    margin-top: 40px;
+  }
+  

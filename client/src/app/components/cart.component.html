@@ -1,28 +1,40 @@
 <h2>Your Cart</h2>
-<div *ngFor="let vape of cart">
-    <p>Flavor: {{vape.flavor}}</p>
-    <p>Type: {{vape.type}}</p>
-    <p>Quantity: {{vape.selectedQuantity}}</p>
-    <p>Price: ${{vape.price}}</p>
-    <button (click)="removeFromCart(vape)">Remove from Cart</button>
-    <hr>
+
+<mat-card *ngFor="let vape of cart" class="product-card">
+  <mat-card-content>
+    <p><strong>Flavor:</strong> {{vape.flavor}}</p>
+    <p><strong>Type:</strong> {{vape.type}}</p>
+    <p><strong>Quantity:</strong> {{vape.selectedQuantity}}</p>
+    <p><strong>Price:</strong> ${{vape.price}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="warn" (click)="removeFromCart(vape)">Remove from Cart</button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="action-buttons">
+  <button mat-raised-button color="warn" (click)="clearCart()">Clear Cart</button>
+  <button mat-raised-button (click)="goBack()">Back</button>
 </div>
 
-<button (click)="clearCart()">Clear Cart</button>
-<button (click)="goBack()">Back</button>
+<!-- Divider -->
+<mat-divider></mat-divider>
 
 <!-- Checkout section -->
 <h2>Checkout</h2>
-<div *ngIf="user">
-  <p>Total cost: ${{ totalCost }}</p>
-  <p>Phone number: {{ user.phoneNumber }}</p>
-  <p>Address: {{ user.address }}</p>
-  <p>Postal Code: {{ user.postalCode }}</p>
-  <p>Unit Number: {{ user.unitNumber }}</p>
-  <p>Comments: {{ user.comments }}</p>
-  
-  <!-- Add a button to confirm the order and go to the payment -->
-  <button (click)="confirmOrder()">Confirm Order</button>
-
-
+<div *ngIf="user" class="checkout-section">
+  <mat-card class="checkout-card">
+    <mat-card-content>
+      <p><strong>Total cost:</strong> ${{ totalCost }}</p>
+      <p><strong>Phone number:</strong> {{ user.phoneNumber }}</p>
+      <p><strong>Address:</strong> {{ user.address }}</p>
+      <p><strong>Postal Code:</strong> {{ user.postalCode }}</p>
+      <p><strong>Unit Number:</strong> {{ user.unitNumber }}</p>
+      <p><strong>Comments:</strong> {{ user.comments }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <!-- Add a button to confirm the order and go to the payment -->
+      <button mat-raised-button color="primary" (click)="confirmOrder()">Confirm Order</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

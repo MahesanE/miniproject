@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   user!: User;
 
   @ViewChild('addressInput') addressInputRef!: ElementRef
+  //@ViewChild('map') mapElement!: ElementRef
 
   constructor(
     private firebaseService: FirebaseService,
@@ -69,6 +70,15 @@ export class ProfileComponent implements OnInit {
     });
   }
   
+  // initializeMap() {
+  //   const mapProperties = {
+  //     center: new google.maps.LatLng(1.3521, 103.8198), // Coordinates for Singapore
+  //     zoom: 10,
+  //     mapTypeId: google.maps.MapTypeId.ROADMAP
+  //   };
+    
+  //   const map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
+  // }
   
 
   initializeAutocomplete() {

@@ -1,24 +1,35 @@
-<div *ngIf="sessionDetails">
-    <h2>Payment Successful</h2>
-    <p>Thank you for your purchase!</p>
+<div class="payment-success-wrapper" *ngIf="sessionDetails">
+    <mat-card class="payment-success-card">
+        <mat-card-header>
+            <mat-icon mat-card-avatar class="check-icon">check_circle</mat-icon>
+            <mat-card-title>Payment Successful</mat-card-title>
+            <mat-card-subtitle>Thank you for your purchase!</mat-card-subtitle>
+        </mat-card-header>
 
-    <h3>Payment Details:</h3>
-    <ul>
-        <li>Name: {{ userName }}</li>
-        <li>Phone Number: {{ phoneNumber }}</li>
-        <li>Email: {{ email}} </li>
-        <li>Address: {{ address }}</li>
-        <li>Postal Code: {{ postalCode }}</li>
-        <li>Unit Number: {{ unitNumber }}</li>
-        <li>Comments: {{ comments }}</li>
-        <li>Delivery Number: {{ deliveryNumber }}</li>
-    </ul>
+        <mat-card-content>
+            <div class="payment-details">
+                <h3>Payment Details:</h3>
+                <mat-list>
+                    <mat-list-item><mat-icon>person</mat-icon> Name: {{ userName }}</mat-list-item>
+                    <mat-list-item><mat-icon>phone</mat-icon> Phone Number: {{ phoneNumber }}</mat-list-item>
+                    <mat-list-item><mat-icon>email</mat-icon> Email: {{ email }}</mat-list-item>
+                    <mat-list-item><mat-icon>home</mat-icon> Address: {{ address }}</mat-list-item>
+                    <mat-list-item><mat-icon>map</mat-icon> Postal Code: {{ postalCode }}</mat-list-item>
+                    <mat-list-item><mat-icon>comment</mat-icon> Comments: {{ comments }}</mat-list-item>
+                    <mat-list-item><mat-icon>local_shipping</mat-icon> Delivery Number: {{ deliveryNumber }}</mat-list-item>
+                </mat-list>
+            </div>
 
-    <h3>Items Purchased:</h3>
-    <ul>
-        <li *ngFor="let item of itemsPurchased">{{item.type}} {{ item.flavor }} - Quantity: {{ item.selectedQuantity }}</li>
-    </ul>
+            <div class="items-purchased">
+                <h3>Items Purchased:</h3>
+                <mat-list>
+                    <mat-list-item *ngFor="let item of itemsPurchased"><mat-icon>local_mall</mat-icon> {{ item.type }} {{ item.flavor }} - Quantity: {{ item.selectedQuantity }}</mat-list-item>
+                </mat-list>
+            </div>
+        </mat-card-content>
+    </mat-card>
 
+    <div class="action-buttons">
+        <button mat-raised-button color="primary" (click)="goBack()">Back to Store</button>
+    </div>
 </div>
-
-<button (click)="goBack()">Back</button>

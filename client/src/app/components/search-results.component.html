@@ -1,15 +1,33 @@
 <h2>Search Results</h2>
-<div *ngFor="let vape of vapes">
-  <p>Flavor: {{vape.flavor}}</p>
-  <p>Type: {{vape.type}}</p>
-  <p>Quantity: {{vape.quantity}}</p>
-  <p>Price: ${{vape.price}} </p>
-  <select [(ngModel)]="vape.selectedQuantity" *ngIf="vape.quantity > 0">
-    <option [value]="null" disabled>Select quantity</option>
-    <option [value]="i" *ngFor="let i of getNumbersUpTo(vape.quantity)">{{i}}</option>
-  </select>
-  <button (click)="addToCart(vape, vape.selectedQuantity)" [disabled]="!vape.selectedQuantity">Add to Cart</button>
-  <hr>
+
+<mat-card *ngFor="let vape of vapes" class="product-card">
+  
+  <mat-card-header>
+    <mat-card-title>{{vape.flavor}}</mat-card-title>
+    <mat-card-subtitle>Type: {{vape.type}}</mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <p>Available Quantity: {{vape.quantity}}</p>
+    <p>Price: ${{vape.price}} </p>
+    
+    <mat-form-field appearance="fill" *ngIf="vape.quantity > 0">
+      <mat-label>Select quantity</mat-label>
+      <mat-select [(value)]="vape.selectedQuantity">
+        <mat-option [value]="null" disabled>Select quantity</mat-option>
+        <mat-option [value]="i" *ngFor="let i of getNumbersUpTo(vape.quantity)">{{i}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card-content>
+  
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="addToCart(vape, vape.selectedQuantity)" [disabled]="!vape.selectedQuantity">
+      Add to Cart
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<div class="action-buttons">
+  <button mat-raised-button (click)="goBack()">Back</button>
+  <button mat-raised-button color="accent" (click)="goToCart()">Go to Cart</button>
 </div>
-<button (click)="goBack()">Back</button>
-<button (click)="goToCart()">Go to Cart</button>

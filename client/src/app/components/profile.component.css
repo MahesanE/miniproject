@@ -1,0 +1,15 @@
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+  }
+  
+  mat-form-field {
+    margin-bottom: 20px;
+  }
+  
+  .comments-field textarea {
+    min-height: 100px;
+  }
+  
