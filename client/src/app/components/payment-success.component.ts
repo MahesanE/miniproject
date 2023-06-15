@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { CartService } from '../services/cart-service.service';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-payment-success',
@@ -23,6 +24,7 @@ export class PaymentSuccessComponent implements OnInit {
   itemsPurchased: any[] = [];
   deliveryNumber: string = '';
 
+
   constructor(private route: ActivatedRoute, private http: HttpClient, private firebaseService: FirebaseService,
     private cartService: CartService, private router: Router) { }
 
@@ -30,7 +32,7 @@ export class PaymentSuccessComponent implements OnInit {
     this.sessionId = this.route.snapshot.queryParamMap.get('session_id');
 
     if (this.sessionId) {
-      this.http.get(`http://localhost:8080/api/stripe/checkout-session?sessionId=${this.sessionId}`)
+      this.http.get(`${environment.apiUrl}/stripe/checkout-session?sessionId=${this.sessionId}`)
         .subscribe(details => {
           this.sessionDetails = details;
         });
@@ -89,7 +91,7 @@ export class PaymentSuccessComponent implements OnInit {
       itemsPurchased: itemsPurchased
     };
 
-    this.http.post('http://localhost:8080/api/deliverydetails', deliveryDetails)
+    this.http.post(`${environment.apiUrl}/deliverydetails`, deliveryDetails)
       .subscribe(response => {
         console.log('Delivery details saved successfully', response);
         localStorage.removeItem('cartItems');
@@ -100,7 +102,7 @@ export class PaymentSuccessComponent implements OnInit {
   }
   sendEmailConfirmation(deliveryDetails: any): void {
     // Send the email confirmation
-    this.http.post('http://localhost:8080/api/email/send', deliveryDetails)
+    this.http.post(`${environment.apiUrl}/email/send`, deliveryDetails)
       .subscribe(response => {
         console.log('Email sent successfully', response);
       }, error => {

@@ -1,8 +1,10 @@
 <div class="payment-success-wrapper" *ngIf="sessionDetails">
     <mat-card class="payment-success-card">
         <mat-card-header>
-            <mat-icon mat-card-avatar class="check-icon">check_circle</mat-icon>
-            <mat-card-title>Payment Successful</mat-card-title>
+            <mat-card-title>
+                <mat-icon class="check-icon">check_circle</mat-icon>
+                Payment Successful
+            </mat-card-title>
             <mat-card-subtitle>Thank you for your purchase!</mat-card-subtitle>
         </mat-card-header>
 
@@ -27,9 +29,9 @@
                 </mat-list>
             </div>
         </mat-card-content>
+        
+        <mat-card-actions class="action-buttons">
+            <button mat-raised-button color="primary" (click)="goBack()">Back to Store</button>
+        </mat-card-actions>
     </mat-card>
-
-    <div class="action-buttons">
-        <button mat-raised-button color="primary" (click)="goBack()">Back to Store</button>
-    </div>
 </div>

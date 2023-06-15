@@ -1,6 +1,7 @@
 // environment.prod.ts
 export const environment = {
     production: true,
+    stripeApiKey:'pk_test_51NGDu9LU50nLoMrUpxEfzq0Lpb82kvvg82kdWMOqxrwY52GhEb3SppgJcTohGi1heMRkXOIK6vY3stfedeeiIA7900JfrqZiyi',
     firebaseConfig: {
       apiKey: "AIzaSyB6PZDWDJQCwoTPHlYOzQmjxoCcxOGP0TQ",
       authDomain: "miniproject-87671.firebaseapp.com",

@@ -7,6 +7,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { User } from '../models';
 import { loadStripe } from '@stripe/stripe-js';
+import { environment } from 'src/environment/environment';
 
 @Component({
   selector: 'app-cart',
@@ -18,6 +19,8 @@ export class CartComponent implements OnInit {
   user: User | null = null;
   totalCost: number = 0;
   stripe: any;
+  private apiUrl = environment.apiUrl;
+  private stripeApiKey = environment.stripeApiKey;
 
   constructor(
     private cartService: CartService,
@@ -45,7 +48,7 @@ export class CartComponent implements OnInit {
       }
     });
 
-    loadStripe('pk_test_51NGDu9LU50nLoMrUpxEfzq0Lpb82kvvg82kdWMOqxrwY52GhEb3SppgJcTohGi1heMRkXOIK6vY3stfedeeiIA7900JfrqZiyi').then((stripe) => {
+    loadStripe(this.stripeApiKey).then((stripe) => {
       this.stripe = stripe;
     });
   }
@@ -85,7 +88,7 @@ export class CartComponent implements OnInit {
 
     const body = { line_items: lineItems };
 
-    this.http.post('http://localhost:8080/api/stripe/create-checkout-session', body)
+    this.http.post(`${this.apiUrl}/stripe/create-checkout-session`, body)
       .subscribe((session: any) => {
         this.stripe.redirectToCheckout({
           sessionId: session.id,
@@ -95,5 +98,9 @@ export class CartComponent implements OnInit {
           }
         });
       });
+  }
+
+  editDeliveryDetails(): void {
+    this.router.navigate(['/profile']);
   }
 }

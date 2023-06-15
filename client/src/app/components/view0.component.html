@@ -1,21 +1,49 @@
-<!-- view0.component.html -->
-<mat-card class="container">
+<mat-toolbar color="primary" class="nav-bar" position="fixed">
+  <span class="app-title">
+    <mat-icon>cloud</mat-icon> <!-- Icon for Vape Shop -->
+    Vape Shop
+  </span>
 
-  <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
-    <mat-form-field class="search-input">
-      <input matInput formControlName="searchString" placeholder="Search flavors">
-    </mat-form-field>
-    <button mat-raised-button color="accent" type="submit" class="search-button">Search</button>
-  </form>
-
-  <div *ngIf="user; else notLoggedIn" class="user-section">
-    <p class="welcome-text">Welcome, {{user.displayName}}!</p>
-    <button mat-raised-button color="primary" (click)="editProfile()" class="edit-profile-button">Edit Profile</button>
-    <button mat-raised-button color="warn" (click)="logout()" class="logout-button">Logout</button>
+  <div *ngIf="!user" class="login-section">
+    <button mat-button color="accent" (click)="loginWithGoogle()">
+      <mat-icon>login</mat-icon> <!-- Added login icon -->
+      Login with Google
+    </button>
   </div>
 
-  <ng-template #notLoggedIn>
-    <button mat-raised-button color="accent" (click)="loginWithGoogle()" class="login-button">Login with Google</button>
-  </ng-template>
+  <div *ngIf="user" class="user-section">
+    <span class="user-name">
+      <mat-icon>person</mat-icon> <!-- Added user icon -->
+      Welcome, {{user.displayName}}!
+    </span>
+    <button mat-button (click)="editProfile()">
+      <mat-icon>edit</mat-icon> <!-- Added edit icon -->
+      Edit Profile
+    </button>
+    <a mat-button routerLink="/cart">
+      <mat-icon>shopping_cart</mat-icon> <!-- Added cart icon -->
+      My Cart
+    </a>
+    <button mat-button color="warn" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon> <!-- Added logout icon -->
+      Logout
+    </button>
+  </div>
+</mat-toolbar>
 
-</mat-card>
+<div class="content-container">
+  <mat-card class="search-container">
+    <div class="welcome-message" *ngIf="!user">
+      <h2>Welcome to Vape Shop</h2>
+      <p>Discover the best flavors and brands.</p>
+    </div>
+
+    <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
+      <mat-form-field class="search-input" appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput formControlName="searchString" placeholder="Search flavors">
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" class="search-button">Search</button>
+    </form>
+  </mat-card>
+</div>

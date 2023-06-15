@@ -1,15 +1,21 @@
-.profile-form {
-    display: flex;
-    flex-direction: column;
-    width: 300px;
-    margin: auto;
+.profile-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   }
   
-  mat-form-field {
-    margin-bottom: 20px;
+  .input-field {
+    width: 100%;
+    margin-bottom: 16px;
   }
   
-  .comments-field textarea {
-    min-height: 100px;
+  .comments-field {
+    margin-top: 20px;
+  }
+  
+  .save-button {
+    text-align: center;
+    margin-top: 20px;
   }
   

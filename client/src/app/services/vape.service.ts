@@ -2,12 +2,13 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Vape } from '../models';
+import { environment } from 'src/environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VapeService {
-  private apiUrl = 'http://localhost:8080/api/vape';
+  private apiUrl = `${environment.apiUrl}/vape`;
 
   constructor(private http: HttpClient) { }
 

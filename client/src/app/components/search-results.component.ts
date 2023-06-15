@@ -28,6 +28,16 @@ export class SearchResultsComponent implements OnInit {
     });
   }
 
+  search(flavor: string): void {
+    if (flavor) {
+      this.vapeService.getVapes(flavor).subscribe(vapes => {
+        this.vapes = vapes;
+        this.vapes.forEach(vape => vape.selectedQuantity = null);
+      });
+    }
+  }
+
+
 
   addToCart(vape: Vape, quantity: number | null): void {
     quantity = quantity || 0; // If quantity is null, default it to 0
