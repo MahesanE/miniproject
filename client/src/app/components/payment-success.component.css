@@ -1,32 +1,51 @@
 .payment-success-wrapper {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 30px auto;
     padding: 20px;
 }
 
 .payment-success-card {
-    padding: 20px;
-    text-align: center;
+    padding: 30px;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payment-success-card mat-card-header mat-card-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.payment-success-card mat-card-header mat-card-subtitle {
+    font-size: 1.2em;
+    margin-top: 10px;
 }
 
 .check-icon {
-    font-size: 48px;
-    color: green;
-    margin-bottom: 20px;
+    font-size: 2em;
+    color: #4caf50; /* You can change to preferred color */
+    margin-right: 10px;
 }
 
-.payment-details,
-.items-purchased {
+.payment-details, .items-purchased {
     margin: 20px 0;
-    text-align: left;
 }
 
-.payment-details mat-list-item,
-.items-purchased mat-list-item {
-    padding-left: 30px;
+.payment-details h3, .items-purchased h3 {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.mat-list-item {
+    font-size: 1.1em;
 }
 
 .action-buttons {
-    margin-top: 20px;
-    justify-content: center;
+    text-align: center;
+}
+
+.action-buttons button {
+    font-size: 1.2em;
+    padding: 10px 30px;
 }

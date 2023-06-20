@@ -1,9 +1,4 @@
-body {
-    background: url('src/assets/vape.jpg') no-repeat center center fixed;
-    background-size: cover;
-  }
-  
-  .nav-bar {
+.nav-bar {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -40,24 +35,25 @@ body {
   }
   
   .content-container {
-    margin-top: 90px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 20px 40px;
+    text-align: center;
   }
   
-  .search-container {
-    max-width: 600px;
-    padding: 40px;
-    margin-top: 20px;
+  .site-title {
     text-align: center;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    font-weight: bold;
+    font-size: 3em;
+    margin-bottom: 20px;
   }
   
   .welcome-message {
     margin-bottom: 30px;
+    color: #555555; /* Darker color */
+  }
+  
+  .search-section {
+    margin-top: 30px;
   }
   
   .search-form {
@@ -66,7 +62,54 @@ body {
   }
   
   .search-input {
-    flex: 1;
-    margin-right: 20px;
+    max-width: 300px;
   }
+  
+  .transparent-input .mat-form-field-outline {
+    opacity: 1.0;
+  }
+  
+  .transparent-input .mat-form-field-wrapper {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .transparent-input .mat-form-field-flex {
+    padding: 0.5em 0.75em;
+  }
+  
+  .search-button {
+    color: white;
+    background-color: #673ab7;
+    border-radius: 4px;
+    margin-left: 10px;
+  }
+  
+  .flavor-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .flavor-image-container {
+    margin: 10px;
+    cursor: pointer;
+  }
+  
+  .flavor-image {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .flavor-image-container:hover .flavor-image {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .flavor-caption {
+    text-align: center;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  
+  
   

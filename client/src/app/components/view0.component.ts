@@ -16,6 +16,13 @@ export class View0Component implements OnInit {
   searchForm: FormGroup;
   user: User | null = null;
 
+  flavors = [
+    { name: 'mango', image: '/assets/mangovape.png' },
+    { name: 'grape', image: '/assets/grapevape1.png' },
+    {name : 'banana', image: '/assets/bananavape.png'}
+    // ... add more flavors
+  ];
+
   constructor(private vapeService: VapeService, private router : Router, private firebaseService : FirebaseService) {
     this.searchForm = new FormGroup({
       searchString: new FormControl('')
@@ -46,6 +53,11 @@ export class View0Component implements OnInit {
     if (flavor) {
       this.router.navigate(['/search', flavor]);
     }
+  }
+
+  searchFlavor(flavor: string) {
+    this.searchForm.get('searchString')?.setValue(flavor);
+    this.search();
   }
 
   loginWithGoogle() {

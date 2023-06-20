@@ -2,8 +2,9 @@
     max-width: 600px;
     margin: 20px auto;
     padding: 40px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Optional: rounded corners */
   }
   
   .search-form {
@@ -24,13 +25,41 @@
   
   .results-title {
     margin-bottom: 20px;
-    font-size: 1.5em;
+    font-size: 2em; /* Increase the font size */
     text-align: center;
-  }
+    font-family: 'Arial', sans-serif; /* Change the font */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow */
+}
+
+mat-card-title {
+    font-size: 1.2em; /* Slightly larger font size for product titles */
+    font-weight: bold; /* Make it bold */
+}
+
+mat-card-actions button {
+    background-color: #673ab7; /* A vibrant green color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Some padding */
+    border: none; /* Remove borders */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+    transition: all 0.3s ease 0s; /* Add a transition effect */
+}
+
+mat-card-actions button:hover {
+    background-color: #45a049; /* A darker green on hover */
+}
   
   .product-card {
     margin: 20px 0;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.7); /* Semi-transparent white background */
+    border-radius: 8px; /* Optional: rounded corners */
   }
   
   .action-buttons {

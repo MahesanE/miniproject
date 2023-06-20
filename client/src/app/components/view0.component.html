@@ -30,17 +30,23 @@
 </mat-toolbar>
 
 <div class="content-container">
-  <mat-card class="search-container">
-    <div class="welcome-message" *ngIf="!user">
-      <h2>Welcome to Vape Shop</h2>
-      <p>Discover the best flavors and brands.</p>
+  <h1 class="site-title">Vape Shop</h1>
+  <h2 class="welcome-message">If You're Going To Get Cancer, At least Choose Your Flavour</h2>
+  <div class="flavor-images">
+    <div class="flavor-image-container" *ngFor="let flavor of flavors">
+      <img [src]="flavor.image" (click)="searchFlavor(flavor.name)" alt="{{flavor.name}} flavor" class="flavor-image" />
+      <div class="flavor-caption">{{flavor.name}}</div>
     </div>
+  </div>
+  <div class="search-section">
     <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
-      <mat-form-field class="search-input" appearance="outline">
+      <mat-form-field class="search-input transparent-input" appearance="outline">
         <mat-icon matPrefix>search</mat-icon>
         <input matInput formControlName="searchString" placeholder="Search flavors">
       </mat-form-field>
-      <button mat-raised-button color="accent" type="submit" class="search-button">Search</button>
+      <button mat-raised-button type="submit" class="search-button">Search</button>
     </form>
-  </mat-card>
+  </div>
 </div>
+
+
