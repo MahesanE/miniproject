@@ -14,6 +14,10 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { PaymentSuccessComponent } from './components/payment-success.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AgeverifyComponent } from './components/ageverify.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     SearchResultsComponent,
     CartComponent,
     ProfileComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    AgeverifyComponent
   ],
   imports: [
     provideFirebaseApp(() => {
@@ -51,10 +57,13 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MatSnackBarModule,
     MatCardModule,
     MatInputModule,
+    MatNativeDateModule,
     MatFormFieldModule,
+    MatDialogModule,
     MatButtonModule,
     MatToolbarModule,
     MatSelectModule,
+    MatDatepickerModule,
     MatBadgeModule,
     MatDividerModule,
     MatListModule,
