@@ -94,7 +94,10 @@ export class PaymentSuccessComponent implements OnInit {
     this.http.post(`${environment.apiUrl}/deliverydetails`, deliveryDetails)
       .subscribe(response => {
         console.log('Delivery details saved successfully', response);
+        console.log('Before clearing local storage...');
+        this.cartService.clearCart();
         localStorage.removeItem('cartItems');
+        console.log('After clearing local storage....');
         this.sendEmailConfirmation(deliveryDetails);
       }, error => {
         console.error('Error saving delivery details', error);
