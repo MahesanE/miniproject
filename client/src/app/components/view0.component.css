@@ -1,5 +1,6 @@
 body {
-    background-color: #f2f2f2;
+    background: url('src/assets/vape.jpg') no-repeat center center fixed;
+    background-size: cover;
   }
   
   .nav-bar {
@@ -13,6 +14,10 @@ body {
     font-weight: bold;
     display: flex;
     align-items: center;
+  }
+  
+  .spacer {
+    flex: 1 1 auto;
   }
   
   .app-title mat-icon {
@@ -61,15 +66,7 @@ body {
   }
   
   .search-input {
-    width: 300px;
+    flex: 1;
     margin-right: 20px;
-  }
-  
-  .login-section {
-    text-align: center;
-  }
-  
-  .login-section mat-icon {
-    margin-right: 5px;
   }
   

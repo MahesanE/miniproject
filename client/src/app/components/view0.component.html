@@ -1,34 +1,32 @@
-<mat-toolbar color="primary" class="nav-bar" position="fixed">
+<mat-toolbar color="primary" class="nav-bar">
   <span class="app-title">
-    <mat-icon>cloud</mat-icon> <!-- Icon for Vape Shop -->
+    <mat-icon>cloud</mat-icon>
     Vape Shop
   </span>
-
-  <div *ngIf="!user" class="login-section">
+  <span class="spacer"></span>
+  <ng-container *ngIf="!user; else loggedIn">
     <button mat-button color="accent" (click)="loginWithGoogle()">
-      <mat-icon>login</mat-icon> <!-- Added login icon -->
+      <mat-icon>login</mat-icon>
       Login with Google
     </button>
-  </div>
-
-  <div *ngIf="user" class="user-section">
-    <span class="user-name">
-      <mat-icon>person</mat-icon> <!-- Added user icon -->
-      Welcome, {{user.displayName}}!
-    </span>
-    <button mat-button (click)="editProfile()">
-      <mat-icon>edit</mat-icon> <!-- Added edit icon -->
-      Edit Profile
-    </button>
-    <a mat-button routerLink="/cart">
-      <mat-icon>shopping_cart</mat-icon> <!-- Added cart icon -->
-      My Cart
-    </a>
-    <button mat-button color="warn" (click)="logout()">
-      <mat-icon>exit_to_app</mat-icon> <!-- Added logout icon -->
-      Logout
-    </button>
-  </div>
+  </ng-container>
+  <ng-template #loggedIn>
+    <div class="user-section">
+      <span class="user-name">
+        <mat-icon>person</mat-icon>
+        Welcome, {{user?.displayName}}!
+      </span>
+      <button mat-button (click)="editProfile()">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <a mat-button routerLink="/cart">
+        <mat-icon>shopping_cart</mat-icon>
+      </a>
+      <button mat-button color="warn" (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+      </button>
+    </div>
+  </ng-template>
 </mat-toolbar>
 
 <div class="content-container">
@@ -37,7 +35,6 @@
       <h2>Welcome to Vape Shop</h2>
       <p>Discover the best flavors and brands.</p>
     </div>
-
     <form [formGroup]="searchForm" (ngSubmit)="search()" class="search-form">
       <mat-form-field class="search-input" appearance="outline">
         <mat-icon matPrefix>search</mat-icon>

@@ -35,7 +35,7 @@ public class EmailController {
         }
 
 
-
+        content += "Your items will be delivered to you in 24 hours.\n";
         content += "Please remember to save this email until your delivery has been complete! \n";
         content += "Thank you for shopping with us!! We hope to see you soon!! :) \n";
 
