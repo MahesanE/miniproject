@@ -1,10 +1,10 @@
-<div mat-dialog-content>
-    <form [formGroup]="form" (ngSubmit)="verifyAge()">
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Enter your birthdate" formControlName="birthdate"[max]="currentDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <button mat-button type="submit">Verify</button>
+<div mat-dialog-content class="age-verification-content">
+    <form [formGroup]="form" (ngSubmit)="verifyAge()" class="age-verification-form">
+        <mat-form-field class="birthdate-input-field" appearance="outline">
+            <input matInput [matDatepicker]="picker" placeholder="Enter your birthdate" formControlName="birthdate" [max]="currentDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" class="verify-button">Verify</button>
     </form>
 </div>
