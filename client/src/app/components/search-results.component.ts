@@ -22,7 +22,6 @@ export class SearchResultsComponent implements OnInit {
       const flavor = params['flavor'];
       this.vapeService.getVapes(flavor).subscribe(vapes => {
         this.vapes = vapes;
-        // Initialize selectedQuantity to null for each vape object
         this.vapes.forEach(vape => vape.selectedQuantity = null);
       });
     });
@@ -40,10 +39,9 @@ export class SearchResultsComponent implements OnInit {
 
 
   addToCart(vape: Vape, quantity: number | null): void {
-    quantity = quantity || 0; // If quantity is null, default it to 0
+    quantity = quantity || 0;
 
     if (quantity <= 0) {
-      // Open the snackbar with a warning message
       this.snackBar.open('Please select a quantity greater than zero', 'Close', {
         duration: 3000,
         verticalPosition: 'top',
@@ -51,12 +49,12 @@ export class SearchResultsComponent implements OnInit {
       return;
     }
 
-    // create a deep copy of the vape object to avoid reference issues
+ 
     const vapeCopy = JSON.parse(JSON.stringify(vape));
-    vapeCopy.selectedQuantity = quantity;  // <-- Update selectedQuantity
+    vapeCopy.selectedQuantity = quantity;  
     this.cartService.addToCart(vapeCopy);
 
-    // open the snackbar
+  
     this.snackBar.open(`${vapeCopy.selectedQuantity} ${vapeCopy.flavor} added to cart`, 'Close', {
       duration: 3000,
       verticalPosition: 'top',

@@ -1,4 +1,11 @@
-// package sg.edu.nus.iss.miniproject.CSVtoMYSQL;
+// package sg.edu.nus.iss.miniproject.service;
+
+// import java.io.IOException;
+// import java.io.InputStream;
+// import java.io.InputStreamReader;
+// import java.io.Reader;
+// import java.sql.SQLException;
+// import java.util.logging.Logger;
 
 // import org.apache.commons.csv.CSVFormat;
 // import org.apache.commons.csv.CSVRecord;
@@ -6,12 +13,6 @@
 // import org.springframework.core.io.ClassPathResource;
 // import org.springframework.jdbc.core.JdbcTemplate;
 // import org.springframework.stereotype.Service;
-
-// import java.io.FileReader;
-// import java.io.IOException;
-// import java.io.Reader;
-// import java.sql.SQLException;
-// import java.util.logging.Logger;
 
 // @Service
 // public class CSVtoMySQLService {
@@ -24,7 +25,10 @@
 //     public void loadDataFromCSVToMySQL() throws IOException, SQLException {
 //         String sql = "INSERT INTO pods_data (type, flavor, quantity, price) VALUES (?, ?, ?, ?)";
 
-//         try (Reader in = new FileReader(new ClassPathResource("testing.csv").getFile())) {
+
+//         ClassPathResource resource = new ClassPathResource("testing.csv");
+//         try (InputStream inputStream = resource.getInputStream();
+//              Reader in = new InputStreamReader(inputStream)) {
 //             Iterable<CSVRecord> records = CSVFormat.DEFAULT.withFirstRecordAsHeader().parse(in);
 //             for (CSVRecord record : records) {
 //                 String relxFlavor = record.get("RELX Pods");

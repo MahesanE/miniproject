@@ -111,5 +111,21 @@
     font-weight: bold;
   }
   
+  .random-flavor-section {
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .random-flavor-image {
+    max-width: 200px;
+    margin: 20px auto;
+  }
+  
+  .surprise-button {
+    background-color: #4CAF50; /* Same background color as the other buttons */
+    color: white; /* White text color */
+    padding: 10px 20px;
+    font-size: 16px;
+  }
   
   

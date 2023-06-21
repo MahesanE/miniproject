@@ -23,7 +23,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { View0Component } from './components/view0.component';
 import { SearchResultsComponent } from './components/search-results.component';
-import { environment } from 'src/environment/environment.prod';
+import { environment } from 'src/environments/environment.prod';
 import { CartComponent } from './components/cart.component';
 import { ProfileComponent } from './components/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';

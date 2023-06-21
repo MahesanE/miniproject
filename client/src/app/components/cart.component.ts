@@ -7,7 +7,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { getAuth, onAuthStateChanged, User as FirebaseUser } from 'firebase/auth';
 import { User } from '../models';
 import { loadStripe } from '@stripe/stripe-js';
-import { environment } from 'src/environment/environment';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',

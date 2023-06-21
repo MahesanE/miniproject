@@ -56,6 +56,8 @@ public class VapeService {
 
     @Transactional
     public void updateStockQuantity(String flavor, int quantity) {
+        System.out.println("Executing update query for flavor: " + flavor + ", quantity: " + quantity); // Add this line for logging
         jdbcTemplate.update(UPDATE_QUANTITY_SQL, quantity, flavor);
     }
+    
 }

@@ -22,8 +22,8 @@ public class StripeService {
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .addAllLineItem(lineItems)
-                .setSuccessUrl("http://localhost:4200/payment-success?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl("http://localhost:4200/cart") // Replace with your cancel URL
+                .setSuccessUrl("https://good-meeting-production.up.railway.app/payment-success?session_id={CHECKOUT_SESSION_ID}")
+                .setCancelUrl("https://good-meeting-production.up.railway.app/cart") // Replace with your cancel URL
                 .build();
 
         return Session.create(params);

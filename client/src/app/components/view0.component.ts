@@ -22,11 +22,10 @@ export class View0Component implements OnInit {
   flavors = [
     { name: 'mango', image: '/assets/mangovape.png' },
     { name: 'grape', image: '/assets/grapevape1.png' },
-    {name : 'banana', image: '/assets/bananavape.png'}
-    // ... add more flavors
+    { name: 'banana', image: '/assets/bananavape.png' }
   ];
 
-  constructor(private vapeService: VapeService, private router : Router, private firebaseService : FirebaseService,
+  constructor(private vapeService: VapeService, private router: Router, private firebaseService: FirebaseService,
     private matDialog: MatDialog) {
     this.searchForm = new FormGroup({
       searchString: new FormControl('')
@@ -35,12 +34,11 @@ export class View0Component implements OnInit {
 
   ngOnInit(): void {
     if (sessionStorage.getItem('ageVerified') === 'true') {
-      // Age has been verified, continue with the normal flow
       this.initializeComponent();
     } else {
       // Open age verification modal
-      const dialogRef = this.matDialog.open(AgeverifyComponent,{
-        disableClose : true
+      const dialogRef = this.matDialog.open(AgeverifyComponent, {
+        disableClose: true
       });
       dialogRef.componentInstance.ageVerified.subscribe((isVerified: boolean) => {
         if (isVerified) {
@@ -52,10 +50,10 @@ export class View0Component implements OnInit {
       });
     }
   }
-  
+
   initializeComponent() {
     this.getVapes();
-  
+
     const auth = getAuth();
     onAuthStateChanged(auth, async (firebaseUser) => {
       this.user = firebaseUser;
@@ -67,7 +65,7 @@ export class View0Component implements OnInit {
       }
     });
   }
-  
+
 
   getVapes(): void {
     this.vapeService.getVapes().subscribe(vapes => this.vapes = vapes);
@@ -105,12 +103,14 @@ export class View0Component implements OnInit {
     const auth = getAuth();
     signOut(auth).then(() => {
       console.log('User signed out');
-      this.user = null; 
+      this.user = null;
     });
   }
 
   editProfile() {
-    this.router.navigate(['/profile']); // Navigate to the profile editing page
+    this.router.navigate(['/profile']);
   }
+
+  
+
 }
-//'https://www.moh.gov.sg/news-highlights/details/minimum-legal-age-for-tobacco-raised-to-21-years-old-from-1-january-2021'

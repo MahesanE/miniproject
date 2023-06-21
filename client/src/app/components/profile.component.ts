@@ -16,7 +16,6 @@ export class ProfileComponent implements OnInit {
   user!: User;
 
   @ViewChild('addressInput') addressInputRef!: ElementRef
-  //@ViewChild('map') mapElement!: ElementRef
 
   constructor(
     private firebaseService: FirebaseService,
@@ -31,9 +30,9 @@ export class ProfileComponent implements OnInit {
       address: new FormControl('', Validators.required),
       postalCode: new FormControl('', [
         Validators.required,
-        Validators.pattern('^[0-9]{6}$') 
+        Validators.pattern('^[0-9]{6}$')
       ]),
-      unitNumber: new FormControl(''), 
+      unitNumber: new FormControl(''),
       comments: new FormControl('')
     });
   }
@@ -53,8 +52,8 @@ export class ProfileComponent implements OnInit {
           unitNumber: userData ? userData['unitNumber'] : '',
           comments: userData ? userData['comments'] : ''
         };
-  
-        // Fill in the form with existing user data
+
+
         this.profileForm.patchValue({
           phoneNumber: this.user['phoneNumber'],
           address: this.user['address'],
@@ -62,24 +61,16 @@ export class ProfileComponent implements OnInit {
           unitNumber: this.user['unitNumber'],
           comments: this.user['comments']
         });
-  
+
         setTimeout(() => {
           this.initializeAutocomplete();
         }, 1000);
       }
     });
   }
-  
-  // initializeMap() {
-  //   const mapProperties = {
-  //     center: new google.maps.LatLng(1.3521, 103.8198), // Coordinates for Singapore
-  //     zoom: 10,
-  //     mapTypeId: google.maps.MapTypeId.ROADMAP
-  //   };
-    
-  //   const map = new google.maps.Map(this.mapElement.nativeElement, mapProperties);
-  // }
-  
+
+
+
 
   initializeAutocomplete() {
     const options: google.maps.places.AutocompleteOptions = {
@@ -87,10 +78,9 @@ export class ProfileComponent implements OnInit {
       fields: ['formatted_address']
     };
 
-    // Initialize Google Places Autocomplete
+
     const autocomplete = new google.maps.places.Autocomplete(this.addressInputRef.nativeElement, options);
 
-    // Listen to the 'place_changed' event
     autocomplete.addListener('place_changed', () => {
       this.ngZone.run(() => {
         const place = autocomplete.getPlace();
