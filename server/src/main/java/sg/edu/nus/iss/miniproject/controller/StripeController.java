@@ -55,7 +55,7 @@ public class StripeController {
             Session session = stripeService.createSession(stripeLineItems);
             return ResponseEntity.ok(session.toJson());
         } catch (StripeException e) {
-            e.printStackTrace(); // log the exception for debugging
+            e.printStackTrace();
             return ResponseEntity.status(500).body(e.getMessage());
         }
     }

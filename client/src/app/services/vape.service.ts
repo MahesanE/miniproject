@@ -13,14 +13,14 @@ export class VapeService {
   constructor(private http: HttpClient) { }
 
   getVapes(flavor?: string): Observable<Vape[]> {
-    console.log('API URL:', this.apiUrl); // Add this line
+    console.log('API URL:', this.apiUrl);
 
     let params = new HttpParams();
     if (flavor) {
         params = params.append('flavor', flavor);
     }
     const finalUrl = `${this.apiUrl}/search`;
-    console.log('Final URL:', finalUrl); // Add this line
+    console.log('Final URL:', finalUrl);
     return this.http.get<Vape[]>(finalUrl, { params });
 }
 

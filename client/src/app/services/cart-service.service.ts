@@ -18,10 +18,10 @@ export class CartService {
     const existingItem = tempCart.find(item => item.type === vapeCopy.type && item.flavor === vapeCopy.flavor);
 
     if (existingItem) {
-      // If the item already exists, update its selected quantity
+      // If the item is there, update its selected quantity
       existingItem.selectedQuantity = (Number(existingItem.selectedQuantity) || 0) + (Number(vapeCopy.selectedQuantity) || 0);
     } else {
-      // Otherwise, add the new item to the cart
+      // else add new item to the cart
       tempCart.push(vapeCopy);
     }
 

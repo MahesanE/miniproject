@@ -25,10 +25,11 @@ public class VapeService {
 
     public List<Vape> getAllRelxPods() {
         return jdbcTemplate.query(RELX_SQL, (resultSet, rowNum) -> new Vape(
+                resultSet.getInt("id"),
                 resultSet.getString("type"),
                 resultSet.getString("flavor"),
                 resultSet.getInt("quantity"),
-                resultSet.getDouble("price")));   // Added price
+                resultSet.getDouble("price"))); // Added price
     }
 
     public List<Vape> getAllRonePods() {
@@ -39,14 +40,15 @@ public class VapeService {
         return jdbcTemplate.query(RELX_FLAVOUR_SQL,
                 ps -> ps.setString(1, "%" + flavor + "%"),
                 (resultSet, rowNum) -> new Vape(
+                        resultSet.getInt("id"),
                         resultSet.getString("type"),
                         resultSet.getString("flavor"),
                         resultSet.getInt("quantity"),
-                        resultSet.getDouble("price")));  // Added price
+                        resultSet.getDouble("price"))); 
     }
 
-    public List<Vape> searchVapes(String flavor){
-        String searchQuery = "%" + flavor + "%"; // to find flavor anywhere in the string
+    public List<Vape> searchVapes(String flavor) {
+        String searchQuery = "%" + flavor + "%"; 
         return jdbcTemplate.query(ALL_FLAVOUR_SQL, new BeanPropertyRowMapper<>(Vape.class), searchQuery);
     }
 
@@ -54,10 +56,10 @@ public class VapeService {
         return jdbcTemplate.query(ALL_VAPE_SQL, new BeanPropertyRowMapper<>(Vape.class));
     }
 
-    @Transactional
+    
     public void updateStockQuantity(String flavor, int quantity) {
-        System.out.println("Executing update query for flavor: " + flavor + ", quantity: " + quantity); // Add this line for logging
+        System.out.println("Executing update query for flavor: " + flavor + ", quantity: " + quantity);
         jdbcTemplate.update(UPDATE_QUANTITY_SQL, quantity, flavor);
     }
-    
+
 }

@@ -15,6 +15,12 @@ public class StripeService {
     @Value("${stripe.secretKey}")
     private String stripeSecretKey;
 
+    @Value("${stripe.successUrl}")
+    private String stripeSuccessUrl;
+
+    @Value("${stripe.cancelUrl}")
+    private String stripeCancelUrl;
+
     public Session createSession(List<SessionCreateParams.LineItem> lineItems) throws StripeException {
         Stripe.apiKey = stripeSecretKey;
 
@@ -22,8 +28,8 @@ public class StripeService {
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
                 .addAllLineItem(lineItems)
-                .setSuccessUrl("https://good-meeting-production.up.railway.app/payment-success?session_id={CHECKOUT_SESSION_ID}")
-                .setCancelUrl("https://good-meeting-production.up.railway.app/cart") // Replace with your cancel URL
+                .setSuccessUrl(stripeSuccessUrl)
+                .setCancelUrl(stripeCancelUrl)
                 .build();
 
         return Session.create(params);

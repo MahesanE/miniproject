@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1687376733071,
+  "timestamp": 1687802105670,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.122ff87c8640bda8.js",
+        "/main.a1c169f9756723a6.js",
         "/manifest.webmanifest",
         "/polyfills.4709fd955acb2242.js",
         "/runtime.7ae29a296d479790.js",
@@ -60,8 +60,8 @@
     "/assets/mangovape.png": "6fe1150ac6516f7ad8a84ebcc581e6fde25a7ed4",
     "/assets/smoke1.jpg": "7f2fb06ce176550a5b8832c7e538da5310e19877",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "a3522bd035aded8b9d00cef1ab78b1f8942eb798",
-    "/main.122ff87c8640bda8.js": "3ece9ac5865e9c3ce4048f8a1e026b65d8c78631",
+    "/index.html": "3ecfc726d4da87fb5dcfeba6c44da5e4c1c70db7",
+    "/main.a1c169f9756723a6.js": "d7f9978555838f138aef4dae5cbbab5d5b2a073d",
     "/manifest.webmanifest": "6bd446cf481e91dc7da6926e0d9b5fb2029c63fa",
     "/polyfills.4709fd955acb2242.js": "e84ccb31e4635abe840faa80b63e4b3d65ce4212",
     "/runtime.7ae29a296d479790.js": "12cfdfd450f222fe2f70ddee2f8c81d4e8b4d5e7",

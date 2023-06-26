@@ -3,8 +3,8 @@
     margin: 40px auto 40px auto;
     padding: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    background-color: #f9f9f9; /* Use a consistent background color */
-    border-radius: 8px; /* Optional, rounded corners */
+    background-color: #f9f9f9; 
+    border-radius: 8px;
 }
 
 .input-field {
@@ -21,19 +21,19 @@
     margin-top: 20px;
 }
 
-/* This is for the card title */
+
 mat-card-title {
-    font-size: 24px; /* Use a larger font-size for the title */
-    color: #333; /* Dark color for the title */
+    font-size: 24px;
+    color: #333;
 }
 
-/* This is for the icons */
+
 mat-icon {
-    color: #4CAF50; /* Use a consistent color for icons */
+    color: #4CAF50; 
 }
 
-/* This is for the buttons */
+
 button {
-    background-color: #4CAF50; /* Consistent background color */
-    color: white; /* White text color */
+    background-color: #4CAF50;
+    color: white;
 }

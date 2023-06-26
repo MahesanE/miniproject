@@ -7,11 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Vape {
+public class User {
     private int id;
-    private String type;
-    private String flavor;
-    private int quantity;
-    private double price;
-   
+    private String userName;
+    private String email;
 }

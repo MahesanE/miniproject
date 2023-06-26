@@ -13,7 +13,6 @@ const routes: Routes = [
   { path: 'search/:flavor', component: SearchResultsComponent },
   { path: 'cart', component: CartComponent },
   { path: 'payment-success', component: PaymentSuccessComponent },
-  // add other routes here
 ];
 
 @NgModule({

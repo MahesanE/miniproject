@@ -66,9 +66,47 @@ export class PaymentSuccessComponent implements OnInit {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
   }
 
+  // sendDeliveryDetailsToBackend(): void {
+  //   const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+
+  //   const itemsPurchased = cartItems.map((item: any) => ({
+  //     vape: {
+  //       type: item.type,
+  //       flavor: item.flavor,
+  //       quantity: item.quantity,
+  //       price: item.price
+  //     },
+  //     selectedQuantity: item.selectedQuantity
+  //   }));
+
+  //   const deliveryDetails = {
+  //     userName: this.userName,
+  //     email: this.email,
+  //     phoneNumber: this.phoneNumber,
+  //     address: this.address,
+  //     postalCode: this.postalCode,
+  //     unitNumber: this.unitNumber,
+  //     comments: this.comments,
+  //     deliveryNumber: this.deliveryNumber,
+  //     itemsPurchased: itemsPurchased
+  //   };
+
+  //   this.http.post(`${environment.apiUrl}/deliverydetails`, deliveryDetails)
+  //     .subscribe(response => {
+  //       console.log('Delivery details saved successfully', response);
+  //       console.log('Before clearing local storage...');
+  //       this.cartService.clearCart();
+  //       localStorage.removeItem('cartItems');
+  //       console.log('After clearing local storage....');
+  //       this.sendEmailConfirmation(deliveryDetails);
+  //     }, error => {
+  //       console.error('Error saving delivery details', error);
+  //     });
+  // }
+
   sendDeliveryDetailsToBackend(): void {
     const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
-
+  
     const itemsPurchased = cartItems.map((item: any) => ({
       vape: {
         type: item.type,
@@ -78,10 +116,14 @@ export class PaymentSuccessComponent implements OnInit {
       },
       selectedQuantity: item.selectedQuantity
     }));
-
-    const deliveryDetails = {
+  
+    const user = {
       userName: this.userName,
-      email: this.email,
+      email: this.email
+    };
+  
+    const deliveryDetails = {
+      user: user,
       phoneNumber: this.phoneNumber,
       address: this.address,
       postalCode: this.postalCode,
@@ -90,22 +132,38 @@ export class PaymentSuccessComponent implements OnInit {
       deliveryNumber: this.deliveryNumber,
       itemsPurchased: itemsPurchased
     };
-
-    this.http.post(`${environment.apiUrl}/deliverydetails`, deliveryDetails)
-      .subscribe(response => {
-        console.log('Delivery details saved successfully', response);
-        console.log('Before clearing local storage...');
-        this.cartService.clearCart();
-        localStorage.removeItem('cartItems');
-        console.log('After clearing local storage....');
-        this.sendEmailConfirmation(deliveryDetails);
+  
+    this.http.post(`${environment.apiUrl}/deliverydetails/mongo`, deliveryDetails)
+      .subscribe(mongoResponse => {
+        console.log('Delivery details saved to MongoDB successfully', mongoResponse);
+  
+        this.http.post(`${environment.apiUrl}/deliverydetails/mysql`, deliveryDetails)
+          .subscribe(mysqlResponse => {
+            console.log('Delivery details saved to MySQL successfully', mysqlResponse);
+  
+            console.log('Before clearing local storage...');
+            this.cartService.clearCart();
+            localStorage.removeItem('cartItems');
+            console.log('After clearing local storage....');
+            this.sendEmailConfirmation(user, deliveryDetails);
+          }, error => {
+            console.error('Error saving delivery details to MySQL', error);
+          });
       }, error => {
-        console.error('Error saving delivery details', error);
+        console.error('Error saving delivery details to MongoDB', error);
       });
   }
-  sendEmailConfirmation(deliveryDetails: any): void {
+  
+
+
+  sendEmailConfirmation(user: any, deliveryDetails: any): void {
     // Send the email confirmation
-    this.http.post(`${environment.apiUrl}/email/send`, deliveryDetails)
+
+    const emailData = {
+      user: user,
+      deliveryDetails: deliveryDetails
+    }
+    this.http.post(`${environment.apiUrl}/email/send`, emailData)
       .subscribe(response => {
         console.log('Email sent successfully', response);
       }, error => {

@@ -1,5 +1,6 @@
 export const environment = {
     production: false,
+    // apiUrl: 'http://localhost:8080/api',
     apiUrl: 'https://good-meeting-production.up.railway.app/api',
     stripeApiKey: 'pk_test_51NGDu9LU50nLoMrUpxEfzq0Lpb82kvvg82kdWMOqxrwY52GhEb3SppgJcTohGi1heMRkXOIK6vY3stfedeeiIA7900JfrqZiyi',
     firebaseConfig: {
